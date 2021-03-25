@@ -1,0 +1,61 @@
+name: 'Helm Publisher'
+description: 'A GitHub Action for publishing Helm charts with github repo'
+author: 'paschdan'
+branding:
+  icon: 'command'
+  color: 'blue'
+inputs:
+  token:
+    description: "GitHub token"
+    required: true
+  charts_dir:
+    description: "The charts directory, defaults to `charts`"
+    required: false
+  charts_url:
+    description: "The GitHub Pages URL, defaults to `https://<OWNER>.github.io/<REPOSITORY>`"
+    required: false
+  owner:
+    description: "The GitHub user or org that owns this repository, defaults to `GITHUB_REPOSITORY`"
+    required: false
+  repository:
+    description: "The GitHub repository name, defaults to `GITHUB_REPOSITORY`"
+    required: false
+  target_branch:
+    description: "The branch to publish charts, defaults to `gh-pages`"
+    required: false
+  target_dir:
+    description: "The target directory to store the charts, defaults to `.`"
+    required: false
+  helm_version:
+    description: "The Helm CLI version"
+    required: false
+  linting:
+    description: "Toggle Helm linting, can be disabled by setting it to 'off'"
+    required: false
+  tagging:
+    description: "Switch off tagging by setting it to 'off', useful when using in a test scenario (on pull requests)"
+    required: false
+  commit_username:
+    description: "The user name used for the commit user"
+    required: false
+    default: ${{ github.actor }}
+  commit_email:
+    description: "The email used for the commit user"
+    required: false
+    default: ${{ github.actor }}@users.noreply.github.com
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.token }}
+    - ${{ inputs.charts_dir }}
+    - ${{ inputs.charts_url }}
+    - ${{ inputs.owner }}
+    - ${{ inputs.repository }}
+    - ${{ inputs.target_branch }}
+    - ${{ inputs.target_dir }}
+    - ${{ inputs.helm_version }}
+    - ${{ inputs.linting }}
+    - ${{ inputs.commit_username }}
+    - ${{ inputs.commit_email }}
+    - ${{ inputs.tagging }}
