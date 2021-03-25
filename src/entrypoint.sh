@@ -18,6 +18,7 @@ set -o errexit
 set -o pipefail
 
 if [[ "$INPUT_DEBUG" == "on" ]]; then
+  env
   set -x
 fi
 
