@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/paschdan/helm-chart-release-to-repo-action/compare/v1.2.0...v1.2.1) (2021-03-25)
+
+
+### Bug Fixes
+
+* use environment instead of args for entrypoint ([bf502fe](https://github.com/paschdan/helm-chart-release-to-repo-action/commit/bf502fe42983c3311842221233605dd37de6bb75))
+
 # [1.2.0](https://github.com/paschdan/helm-chart-release-to-repo-action/compare/v1.1.2...v1.2.0) (2021-03-25)
 
 
