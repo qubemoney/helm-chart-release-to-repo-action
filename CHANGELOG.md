@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/paschdan/helm-chart-release-to-repo-action/compare/v1.1.0...v1.1.1) (2021-03-25)
+
+
+### Bug Fixes
+
+* fix debug enabling ([3711cd8](https://github.com/paschdan/helm-chart-release-to-repo-action/commit/3711cd8520b5eacd957ee301b15cad1f6c1041a1))
+
 # [1.1.0](https://github.com/paschdan/helm-chart-release-to-repo-action/compare/v1.0.2...v1.1.0) (2021-03-25)
 
 
