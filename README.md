@@ -4,7 +4,11 @@ A GitHub Action for publishing Helm charts with Github Pages.
 
 ## Usage
 
-Inputs:
+### Prerequisities
+
+* the target_branch has to exist.
+
+### Inputs
 
 * `token` The GitHub token with write access to the target repository
 * `charts_dir` The charts directory, defaults to `charts`
@@ -17,6 +21,9 @@ Inputs:
 * `linting` Toggle Helm linting, can be disabled by setting it to `off`
 * `commit_username` Explicitly specify username for commit back, default to `GITHUB_ACTOR`
 * `commit_email` Explicitly specify email for commit back, default to `GITHUB_ACTOR@users.noreply.<GITHUB_HOST>`
+
+*hint*:
+for our GHE the `commit_username` has to match to the `token`
 
 ## History
 
