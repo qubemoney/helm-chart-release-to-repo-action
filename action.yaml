@@ -49,16 +49,3 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.token }}
-    - ${{ inputs.charts_dir }}
-    - ${{ inputs.charts_url }}
-    - ${{ inputs.owner }}
-    - ${{ inputs.repository }}
-    - ${{ inputs.target_branch }}
-    - ${{ inputs.target_dir }}
-    - ${{ inputs.helm_version }}
-    - ${{ inputs.linting }}
-    - ${{ inputs.commit_username }}
-    - ${{ inputs.commit_email }}
-    - ${{ inputs.tagging }}
