@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/paschdan/helm-chart-release-to-repo-action/compare/v1.2.1...v1.2.2) (2021-03-25)
+
+
+### Bug Fixes
+
+* use commit_username for repo access ([48c3588](https://github.com/paschdan/helm-chart-release-to-repo-action/commit/48c3588c689f0a8fe9699ea0d1125e249dbf6a2c))
+
 ## [1.2.1](https://github.com/paschdan/helm-chart-release-to-repo-action/compare/v1.2.0...v1.2.1) (2021-03-25)
 
 
