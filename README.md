@@ -58,3 +58,25 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+The same example but with cached docker image:
+
+```yaml
+name: release
+on:
+  push:
+    tags: '*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Publish Helm charts
+        uses: docker://ghcr.io/paschdan/helm-chart-release-to-repo-action:v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+```
