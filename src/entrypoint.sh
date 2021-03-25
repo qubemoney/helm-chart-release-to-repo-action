@@ -122,7 +122,7 @@ package_chart() {
     helm lint "${chart}"
   fi
   echo "Updating dependencies..."
-  helm dependencies update "${chart}" --skip-refresh >/dev/null 2>&1
+  helm dependencies update "${chart}"
   echo "Packaging chart '$chart'..."
   helm package "${chart}" --destination "${CHARTS_TMP_DIR}"
 }
