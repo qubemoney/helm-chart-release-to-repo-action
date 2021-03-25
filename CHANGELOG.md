@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/paschdan/helm-chart-release-to-repo-action/compare/v1.2.2...v1.2.3) (2021-03-25)
+
+
+### Bug Fixes
+
+* update action.yml ([0a9de88](https://github.com/paschdan/helm-chart-release-to-repo-action/commit/0a9de88fb151e3fb36104fa74fc7d8cfee84b836))
+
 ## [1.2.2](https://github.com/paschdan/helm-chart-release-to-repo-action/compare/v1.2.1...v1.2.2) (2021-03-25)
 
 
