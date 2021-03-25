@@ -118,11 +118,12 @@ package() {
 package_chart() {
   local chart="$1"
 
+  echo "Updating dependencies..."
+  helm dependencies update "${chart}"
+
   if [[ "$LINTING" != "off" ]]; then
     helm lint "${chart}"
   fi
-  echo "Updating dependencies..."
-  helm dependencies update "${chart}"
   echo "Packaging chart '$chart'..."
   helm package "${chart}" --destination "${CHARTS_TMP_DIR}"
 }
