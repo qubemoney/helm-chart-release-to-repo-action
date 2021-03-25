@@ -62,4 +62,3 @@ runs:
     - ${{ inputs.commit_username }}
     - ${{ inputs.commit_email }}
     - ${{ inputs.tagging }}
-    - ${{ inputs.debug }}

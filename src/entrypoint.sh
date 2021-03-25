@@ -29,9 +29,8 @@ LINTING=$9
 COMMIT_USERNAME=${10}
 COMMIT_EMAIL=${11}
 TAGGING=${12}
-DEBUG=${13}
 
-if [[ "$DEBUG" == "on" ]]; then
+if [[ "$INPUT_DEBUG" == "on" ]]; then
   set -x
 fi
 
