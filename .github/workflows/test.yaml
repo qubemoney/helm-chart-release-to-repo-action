@@ -1,0 +1,17 @@
+name: test
+
+on: pull_request
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Publish helm chart
+        uses: ./
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          charts_dir: testdata
+          tagging: off

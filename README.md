@@ -51,6 +51,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Publish Helm charts
         uses: paschdan/helm-chart-release-to-repo-action@v1
         with:
