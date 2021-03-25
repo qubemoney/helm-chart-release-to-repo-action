@@ -17,6 +17,10 @@
 set -o errexit
 set -o pipefail
 
+if [[ "$INPUT_DEBUG" == "on" ]]; then
+  set -x
+fi
+
 GITHUB_TOKEN=$1
 CHARTS_DIR=$2
 CHARTS_URL=$3
@@ -30,9 +34,6 @@ COMMIT_USERNAME=${10}
 COMMIT_EMAIL=${11}
 TAGGING=${12}
 
-if [[ "$INPUT_DEBUG" == "on" ]]; then
-  set -x
-fi
 
 CHARTS_TMP_DIR=$(mktemp -d)
 REPO_ROOT=$(git rev-parse --show-toplevel)
