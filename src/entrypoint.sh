@@ -29,6 +29,11 @@ LINTING=$9
 COMMIT_USERNAME=${10}
 COMMIT_EMAIL=${11}
 TAGGING=${12}
+DEBUG=${13}
+
+if [[ "$DEBUG" == "on" ]]; then
+  set -x
+fi
 
 CHARTS_TMP_DIR=$(mktemp -d)
 REPO_ROOT=$(git rev-parse --show-toplevel)

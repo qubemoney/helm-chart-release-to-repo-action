@@ -43,6 +43,9 @@ inputs:
     description: "The email used for the commit user"
     required: false
     default: ${{ github.actor }}@users.noreply.github.com
+  debug:
+    description: "enable debug"
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -59,3 +62,4 @@ runs:
     - ${{ inputs.commit_username }}
     - ${{ inputs.commit_email }}
     - ${{ inputs.tagging }}
+    - ${{ inputs.debug }}
