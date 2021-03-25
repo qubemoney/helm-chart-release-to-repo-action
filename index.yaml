@@ -3,9 +3,9 @@ entries:
   test:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-03-25T11:44:23.838418487Z"
+    created: "2021-03-25T11:50:05.823659493Z"
     description: A Helm chart for Kubernetes
-    digest: 63c23279b79132aca2d63bc3aeb09a62bb05b2ad7eafb5da32793d0d1476b6d0
+    digest: 47cbe75a1633facbbc9dcd5b74e3d77a5ae0653de9438ed18ab4ec15c7522752
     name: test
     type: application
     urls:
@@ -14,12 +14,12 @@ entries:
   test1:
   - apiVersion: v2
     appVersion: 1.17.0
-    created: "2021-03-25T11:44:23.838947991Z"
+    created: "2021-03-25T11:50:05.824357152Z"
     description: A Helm chart for Kubernetes
-    digest: 230df8b310fdb82417c21059b0b4fbc380de7c08b56921d43a2c1f04055d6d8a
+    digest: f7ca9caff516b139942e38f01a325778339508e055c3865c1ef12d31bc7919f0
     name: test1
     type: application
     urls:
     - https://paschdan.github.io/helm-chart-release-to-repo-action/test1-0.2.0.tgz
     version: 0.2.0
-generated: "2021-03-25T11:44:23.837675481Z"
+generated: "2021-03-25T11:50:05.822859826Z"
