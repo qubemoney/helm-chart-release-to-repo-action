@@ -76,7 +76,7 @@ main() {
   fi
 
   if [[ -z "$REPO_URL" ]]; then
-    REPO_URL="https://x-access-token:${GITHUB_TOKEN}@${GH_HOST}/${OWNER}/${REPOSITORY}"
+    REPO_URL="https://${COMMIT_USERNAME}:${GITHUB_TOKEN}@${GH_HOST}/${OWNER}/${REPOSITORY}"
   fi
 
   if [[ -z "$COMMIT_USERNAME" ]]; then
