@@ -1,5 +1,5 @@
-name: 'Helm Publisher'
-description: 'A GitHub Action for publishing Helm charts with github repo'
+name: 'Helm publish to branch'
+description: 'A GitHub Action for publishing Helm charts to a branch like gh-pages' 
 author: 'paschdan'
 branding:
   icon: 'command'
