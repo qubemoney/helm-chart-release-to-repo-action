@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/paschdan/helm-chart-release-to-repo-action/compare/v1.1.2...v1.2.0) (2021-03-25)
+
+
+### Features
+
+* add env to debug output ([ab05031](https://github.com/paschdan/helm-chart-release-to-repo-action/commit/ab05031262e314401b51339a45434472a1628967))
+
 ## [1.1.2](https://github.com/paschdan/helm-chart-release-to-repo-action/compare/v1.1.1...v1.1.2) (2021-03-25)
 
 
