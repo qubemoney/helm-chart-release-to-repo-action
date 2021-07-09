@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/paschdan/helm-chart-release-to-repo-action/compare/v1.3.0...v1.3.1) (2021-07-09)
+
+
+### Bug Fixes
+
+* use commiter as local part of the commit_email address ([b8cd7ba](https://github.com/paschdan/helm-chart-release-to-repo-action/commit/b8cd7bac346bf829c4df274a4f3bf1cc11570fbd))
+
 # [1.3.0](https://github.com/paschdan/helm-chart-release-to-repo-action/compare/v1.2.3...v1.3.0) (2021-03-25)
 
 
