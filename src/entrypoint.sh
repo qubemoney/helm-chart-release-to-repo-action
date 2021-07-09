@@ -84,7 +84,7 @@ main() {
   fi
 
   if [[ -z "$COMMIT_EMAIL" ]]; then
-    COMMIT_EMAIL="${GITHUB_ACTOR}@users.noreply.${GH_HOST}"
+    COMMIT_EMAIL="${COMMIT_USERNAME}@users.noreply.${GH_HOST}"
   fi
 
   download
