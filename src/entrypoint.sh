@@ -35,6 +35,8 @@ COMMIT_USERNAME=$INPUT_COMMIT_USERNAME
 COMMIT_EMAIL=$INPUT_COMMIT_EMAIL
 TAGGING=$INPUT_TAGGING
 
+# Work around https://github.com/actions/checkout/issues/760
+git config --global --add safe.directory /github/workspace
 
 CHARTS_TMP_DIR=$(mktemp -d)
 REPO_ROOT=$(git rev-parse --show-toplevel)
