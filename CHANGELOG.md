@@ -1,3 +1,10 @@
+## [1.3.3](https://github.com/paschdan/helm-chart-release-to-repo-action/compare/v1.3.2...v1.3.3) (2022-05-10)
+
+
+### Bug Fixes
+
+* make workspace a safe git directory  ([a8064d9](https://github.com/paschdan/helm-chart-release-to-repo-action/commit/a8064d913e40e80435437ea758f9c3b4c12a3b41)), closes [#3](https://github.com/paschdan/helm-chart-release-to-repo-action/issues/3)
+
 ## [1.3.2](https://github.com/paschdan/helm-chart-release-to-repo-action/compare/v1.3.1...v1.3.2) (2021-07-09)
 
 
