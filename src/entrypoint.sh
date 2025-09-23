@@ -34,6 +34,7 @@ LINTING=$INPUT_LINTING
 COMMIT_USERNAME=$INPUT_COMMIT_USERNAME
 COMMIT_EMAIL=$INPUT_COMMIT_EMAIL
 TAGGING=$INPUT_TAGGING
+FORCE=$INPUT_FORCE
 
 # Work around https://github.com/actions/checkout/issues/760
 git config --global --add safe.directory /github/workspace
@@ -97,30 +98,46 @@ main() {
 package() {
   pushd "$REPO_ROOT" >/dev/null
 
-  echo 'Looking up latest tag...'
-  local latest_tag
-  latest_tag=$(lookup_latest_tag)
+  # Normalize FORCE: on/true/1 treated as enabled
+  local force_normalized=$(echo "$FORCE" | tr '[:upper:]' '[:lower:]')
+  if [[ "$force_normalized" == "on" || "$force_normalized" == "true" || "$force_normalized" == "1" ]]; then
+    echo "FORCE enabled: packaging all charts under '$CHARTS_DIR'"
+    # Find all chart directories containing Chart.yaml directly under CHARTS_DIR/* or deeper
+    mapfile -t all_charts < <(find "$CHARTS_DIR" -type f -name Chart.yaml -maxdepth 3 -print0 | xargs -0 -n1 dirname | sort -u)
+    for chart in "${all_charts[@]}"; do
+      if [[ -d "$chart" ]]; then
+        local chart_name=${chart#"$CHARTS_DIR/"}
+        local chart_version=$(helm show chart "$chart" | grep "^version" | awk '{print $2}')
+        TAGS+=("${chart_name}-${chart_version}")
+        package_chart "${chart}"
+      fi
+    done
+  else
+    echo 'Looking up latest tag...'
+    local latest_tag
+    latest_tag=$(lookup_latest_tag)
 
-  echo "Discovering changed charts since '$latest_tag'..."
-  local changed_charts=()
-  readarray -t changed_charts <<<"$(lookup_changed_charts "$latest_tag")"
+    echo "Discovering changed charts since '$latest_tag'..."
+    local changed_charts=()
+    readarray -t changed_charts <<<"$(lookup_changed_charts "$latest_tag")"
 
-  # if [[ -n "${changed_charts[*]}" ]]; then
+    if [[ -n "${changed_charts[*]}" ]]; then
 
-  for chart in "${changed_charts[@]}"; do
-    if [[ -d "$chart" ]]; then
-      local chart_name=${chart#"$CHARTS_DIR/"}
-      local chart_version=$(helm show chart $chart | grep "^version" | awk '{print $2}')
-      TAGS+=("${chart_name}-${chart_version}")
-      package_chart "${chart}"
+      for chart in "${changed_charts[@]}"; do
+        if [[ -d "$chart" ]]; then
+          local chart_name=${chart#"$CHARTS_DIR/"}
+          local chart_version=$(helm show chart $chart | grep "^version" | awk '{print $2}')
+          TAGS+=("${chart_name}-${chart_version}")
+          package_chart "${chart}"
+        else
+          echo "Chart '$chart' no longer exists in repo. Skipping it..."
+        fi
+      done
     else
-      echo "Chart '$chart' no longer exists in repo. Skipping it..."
+      echo "Nothing to do. No chart changes detected"
+      exit 0
     fi
-  done
-  # else
-  #   echo "Nothing to do. No chart changes detected"
-  #   exit 0
-  # fi
+  fi
 }
 
 package_chart() {
@@ -205,8 +222,13 @@ upload() {
   fi
 
   git add ${TARGET_DIR}
-  git commit -m "Publish $charts"
-  git push origin ${BRANCH}
+  # Commit only if there are changes
+  if ! git diff --cached --quiet; then
+    git commit -m "Publish $charts"
+    git push origin ${BRANCH}
+  else
+    echo "No changes to commit for ${TARGET_DIR}"
+  fi
 
   popd >&/dev/null
   rm -rf $tmpDir
@@ -215,7 +237,11 @@ upload() {
   if [[ "$TAGGING" != "off" ]]; then
     echo "Adding tags ${TAGS[*]}..."
     for tag in "${TAGS[@]}"; do
-      git tag ${tag}
+      if git rev-parse -q --verify "refs/tags/${tag}" >/dev/null; then
+        echo "Tag ${tag} already exists, skipping."
+      else
+        git tag ${tag}
+      fi
     done
     git push origin --tags
   fi
