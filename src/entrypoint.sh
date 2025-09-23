@@ -105,22 +105,22 @@ package() {
   local changed_charts=()
   readarray -t changed_charts <<<"$(lookup_changed_charts "$latest_tag")"
 
-  if [[ -n "${changed_charts[*]}" ]]; then
+  # if [[ -n "${changed_charts[*]}" ]]; then
 
-    for chart in "${changed_charts[@]}"; do
-      if [[ -d "$chart" ]]; then
-        local chart_name=${chart#"$CHARTS_DIR/"}
-        local chart_version=$(helm show chart $chart | grep "^version" | awk '{print $2}')
-        TAGS+=("${chart_name}-${chart_version}")
-        package_chart "${chart}"
-      else
-        echo "Chart '$chart' no longer exists in repo. Skipping it..."
-      fi
-    done
-  else
-    echo "Nothing to do. No chart changes detected"
-    exit 0
-  fi
+  for chart in "${changed_charts[@]}"; do
+    if [[ -d "$chart" ]]; then
+      local chart_name=${chart#"$CHARTS_DIR/"}
+      local chart_version=$(helm show chart $chart | grep "^version" | awk '{print $2}')
+      TAGS+=("${chart_name}-${chart_version}")
+      package_chart "${chart}"
+    else
+      echo "Chart '$chart' no longer exists in repo. Skipping it..."
+    fi
+  done
+  # else
+  #   echo "Nothing to do. No chart changes detected"
+  #   exit 0
+  # fi
 }
 
 package_chart() {
